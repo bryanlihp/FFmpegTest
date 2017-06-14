@@ -62,15 +62,23 @@ int ShowVideoFileProperties(const char *pszFileName)
 	int               numBytes;
 	uint8_t           *buffer = NULL;
 	struct SwsContext *sws_ctx = NULL;
-	// Open video file
+
+	// Open media file
+	// reads the file header and stores information about the file in AVFormatContext structure
 	if (avformat_open_input(&pFormatCtx, pszFileName, NULL, NULL) != 0)
+	{
 		return -1; // Couldn't open file
+	}
 
-				   // Retrieve stream information
+
+	// Retrieve stream information by populating pFormatCtx->streams with the proper information
+	// 
 	if (avformat_find_stream_info(pFormatCtx, NULL) < 0)
+	{
 		return -1; // Couldn't find stream information
+	}
 
-				   // Dump information about file onto standard error
+	// Dump information about file onto standard error - very handy in terms of debugging
 	av_dump_format(pFormatCtx, 0, pszFileName, 0);
 
 	// Find the first video stream
