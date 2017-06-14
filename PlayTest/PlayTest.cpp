@@ -182,10 +182,4 @@ int main(int argc, char *argv[]) {
 	av_register_all();
 
 	ShowVideoFileProperties("G:\\NswSamples\\Video\\Video2.WMV");
-	ShowVideoFileProperties("G:\\NewswireSampleData\\Sample85.aac");
-	ShowVideoFileProperties("G:\\NewswireSampleData\\testmp3.mp3");
-	ShowVideoFileProperties("G:\\NewswireSampleData\\wavetest.wav");
-	ShowVideoFileProperties("G:\\NewswireSampleData\\Luci-Test_20150413-165312.wav");
-	ShowVideoFileProperties("G:\\NewswireSampleData\\VRB_Test_RadioTop.mp3");
-	ShowVideoFileProperties("G:\\NewswireSampleData\\9LKYNO.wav");
 }
