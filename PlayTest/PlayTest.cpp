@@ -46,9 +46,9 @@ void SaveFrame(AVFrame *pFrame, int width, int height, int iFrame) {
 	// Close file
 	fclose(pFile);
 }
-const char * g_pszDefaultFile = "G:\\NswSamples\\Video\\Video2.WMV";
 
-int main(int argc, char *argv[]) {
+int ShowVideoFileProperties(const char *pszFileName)
+{
 	// Initalizing these to NULL prevents segfaults!
 	AVFormatContext   *pFormatCtx = NULL;
 	int               i, videoStream;
@@ -62,14 +62,6 @@ int main(int argc, char *argv[]) {
 	int               numBytes;
 	uint8_t           *buffer = NULL;
 	struct SwsContext *sws_ctx = NULL;
-	const char * pszFileName = NULL;
-	if (argc < 2) {
-		pszFileName = g_pszDefaultFile;
-	}
-	else
-	{
-		pszFileName = argv[1];
-	}
 	// Register all formats and codecs
 	av_register_all();
 	// Open video file
@@ -81,7 +73,7 @@ int main(int argc, char *argv[]) {
 		return -1; // Couldn't find stream information
 
 				   // Dump information about file onto standard error
-	av_dump_format(pFormatCtx, 0, argv[1], 0);
+	av_dump_format(pFormatCtx, 0, pszFileName, 0);
 
 	// Find the first video stream
 	videoStream = -1;
@@ -182,6 +174,28 @@ int main(int argc, char *argv[]) {
 
 	// Close the video file
 	avformat_close_input(&pFormatCtx);
-
 	return 0;
+}
+
+const char * g_pszDefaultFile = "G:\\NswSamples\\Video\\Video2.WMV";
+
+
+int main(int argc, char *argv[]) {
+	
+	const char * pszFileName = NULL;
+	// Register all formats and codecs
+	if (argc < 2) {
+		pszFileName = g_pszDefaultFile;
+	}
+	else
+	{
+		pszFileName = argv[1];
+	}
+	ShowVideoFileProperties("G:\\NswSamples\\Video\\Video2.WMV");
+	ShowVideoFileProperties("G:\\NewswireSampleData\\Sample85.aac");
+	ShowVideoFileProperties("G:\\NewswireSampleData\\testmp3.mp3");
+	ShowVideoFileProperties("G:\\NewswireSampleData\\wavetest.wav");
+	ShowVideoFileProperties("G:\\NewswireSampleData\\Luci-Test_20150413-165312.wav");
+	ShowVideoFileProperties("G:\\NewswireSampleData\\VRB_Test_RadioTop.mp3");
+	ShowVideoFileProperties("G:\\NewswireSampleData\\9LKYNO.wav");
 }
