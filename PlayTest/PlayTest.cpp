@@ -62,8 +62,6 @@ int ShowVideoFileProperties(const char *pszFileName)
 	int               numBytes;
 	uint8_t           *buffer = NULL;
 	struct SwsContext *sws_ctx = NULL;
-	// Register all formats and codecs
-	av_register_all();
 	// Open video file
 	if (avformat_open_input(&pFormatCtx, pszFileName, NULL, NULL) != 0)
 		return -1; // Couldn't open file
@@ -177,20 +175,12 @@ int ShowVideoFileProperties(const char *pszFileName)
 	return 0;
 }
 
-const char * g_pszDefaultFile = "G:\\NswSamples\\Video\\Video2.WMV";
-
 
 int main(int argc, char *argv[]) {
 	
-	const char * pszFileName = NULL;
 	// Register all formats and codecs
-	if (argc < 2) {
-		pszFileName = g_pszDefaultFile;
-	}
-	else
-	{
-		pszFileName = argv[1];
-	}
+	av_register_all();
+
 	ShowVideoFileProperties("G:\\NswSamples\\Video\\Video2.WMV");
 	ShowVideoFileProperties("G:\\NewswireSampleData\\Sample85.aac");
 	ShowVideoFileProperties("G:\\NewswireSampleData\\testmp3.mp3");
