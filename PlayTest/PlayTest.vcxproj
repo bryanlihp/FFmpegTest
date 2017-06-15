@@ -72,14 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)FFmpeg\$(Configuration)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)FFmpeg\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)FFmpeg\$(Configuration)\include;$(SolutionDir)SDL1.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)FFmpeg\$(Configuration)\lib;$(SolutionDir)SDL1.2\lib\$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)FFmpeg\$(Configuration)\include;$(SolutionDir)SDL1.2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)FFmpeg\$(Configuration)\lib;$(SolutionDir)SDL1.2\lib\$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
