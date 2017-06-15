@@ -1,6 +1,7 @@
 // ConsoleApplication1.cpp : Defines the entry point for the console application.
 //
 #include "stdafx.h"
+#include <windows.h>
 #define _SDL_main_h
 extern "C" 
 {
@@ -265,8 +266,8 @@ int PlayVideoFrames(const char *pszFileName)
 			// Did we get a video frame?
 			if (frameFinished)
 			{
-				for (int i = 0; i < 1000000; ++i);
-				SDL_LockYUVOverlay(pSdlOverlay);
+				Sleep(1000/25);
+				SDL_LockYUVOverlay(pSdlOverlay); 
 				AVPicture pict;
 				pict.data[0] = pSdlOverlay->pixels[0];
 				pict.data[1] = pSdlOverlay->pixels[2];
@@ -326,7 +327,10 @@ int main(int argc, char *argv[]) {
 
 	const char *pszFileName = "G:\\NswSamples\\Video\\Video2.WMV";
 	DecodeVideoToFrames(pszFileName, 5);
-	PlayVideoFrames(pszFileName);
+	PlayVideoFrames("G:\\NewswireSampleData\\Video1.WMV");
+//	PlayVideoFrames(pszFileName);
+
+
 /*
 	ShowVideoFileProperties("G:\\NewswireSampleData\\Sample85.aac");
 	ShowVideoFileProperties("G:\\NewswireSampleData\\testmp3.mp3");
